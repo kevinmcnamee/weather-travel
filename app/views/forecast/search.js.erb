@@ -1,0 +1,4 @@
+$('.trip-summary').text('Distance: <%= number_with_precision(@trip.directions.distance, precision: 1) %> miles; Duration: <%= @trip.directions.duration %>;')
+
+$('.start-location').html('<%= j render partial: "location", locals: { location: @trip.directions.start_location } %>')
+$('.end-location').html('<%= j render partial: "location", locals: { location: @trip.directions.end_location } %>')

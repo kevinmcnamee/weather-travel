@@ -31,6 +31,20 @@ describe 'Weather with lat lng' do
     end
   end
 
+  context 'without valid params' do
+    before do
+      get '/api/forecast', { latitude: latitude, longitude: longitude }
+    end
+
+    it 'returns a 406 error' do
+      expect(response.status).to eq 406
+    end
+
+    it 'has a proper error message' do
+      expect(response_body).to eq 'longitude and latitude are required'
+    end
+  end
+
   def json_response
     JSON.parse(response.body)
   end
