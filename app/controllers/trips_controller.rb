@@ -1,4 +1,4 @@
-class ForecastController < ApplicationController
+class TripsController < ApplicationController
   def index
   end
 
@@ -9,6 +9,6 @@ class ForecastController < ApplicationController
   private
 
   def trip_params
-    params.require(:forecast).permit(:to, :from)
+    params.require(:trip).permit(:to, :from)
   end
 end

@@ -1,6 +1,5 @@
-
 <div class='trip-container container'>
-  <%= form_for :forecast, url: '/forecast/search', remote: true do |f| %>
+  <%= form_for :trip, url: '/trips/search', remote: true do |f| %>
     <%= f.label :from, 'From' %>
     <%= f.text_field :from %>
 

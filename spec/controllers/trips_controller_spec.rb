@@ -1,11 +1,18 @@
 require 'rails_helper'
 
-describe ForecastController do
+describe TripsController do
+  describe '#index' do
+    it 'returns a successful response' do
+      get :index
+      expect(response.status).to eq 200
+    end
+  end
+
   describe '#search' do
     let(:from) { '45440' }
     let(:to) { '07506' }
     let(:params) do
-      { forecast: {to: to, from: from} }
+      { trip: {to: to, from: from} }
     end
 
     let(:trip_director) { double(:trip_director) }
