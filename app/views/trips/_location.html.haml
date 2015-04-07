@@ -1,0 +1,8 @@
+%h2= location.address
+
+%h4 Currently: #{location.forecast.currently.temperature.to_i}&deg | #{location.forecast.currently.summary}
+
+%h4 Hourly:
+%ul
+  - location.forecast.hourly.each do |hourly|
+    %li #{hourly.time.strftime("%-m/%-d %-l:%M%P")} | #{hourly.temperature.to_i}&deg | #{hourly.summary}

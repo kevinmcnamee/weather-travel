@@ -48,9 +48,19 @@ module GoogleMaps
 
     describe 'attributes' do
       it 'sets proper attributes' do
-        expect(directions.start_location).to be_a(Address)
-        expect(directions.end_location).to be_a(Address)
-        expect(directions.polyline).to eq api_response[:routes].first[:overview_polyline]
+        expect(directions.start_location).to be_a(Location)
+        expect(directions.end_location).to be_a(Location)
+        expect(directions.polyline).to eq api_response[:routes].first[:overview_polyline][:points]
+      end
+    end
+
+    describe '#duration_readable' do
+      let(:duration) { 3610 } # 1 hour 10 seconds
+
+      it 'returns a human readable version of the time' do
+        directions.duration = duration
+
+        expect(directions.duration_readable).to eq '1 hour 10 seconds'
       end
     end
   end
