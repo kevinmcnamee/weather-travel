@@ -2,3 +2,39 @@ $('.trip-summary').text('Distance: <%= number_with_precision(@trip.directions.di
 
 $('.start-location').html('<%= j render partial: "location", locals: { location: @trip.directions.start_location } %>')
 $('.end-location').html('<%= j render partial: "location", locals: { location: @trip.directions.end_location } %>')
+
+function initialize() {
+  var mapOptions = {
+    center: {
+      lat: <%= @trip.directions.start_location.latitude %>,
+      lng: <%= @trip.directions.start_location.longitude %>
+    },
+    zoom: 8
+  };
+
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions),
+   //   decodedPath = google.maps.geometry.encoding.decodePath('<%= @trip.directions.polyline %>'),
+     // decodedLevels = decodeLevels("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+
+  new google.maps.Polyline({
+    path: decodedPath,
+    levels: decodedLevels,
+    strokeColor: "#1FBE1B",
+    strokeOpacity: 1.0,
+    strokeWeight: 2,
+    map: map
+  })
+};
+
+decodeLevels = function(encodedLevelsString) {
+  var decodedLevels = [], level;
+
+  for (i in encodedLevelsString.length) {
+    level = encodedLevelsString.charCodeAt(i) - 63
+    decodedLevels.push(level)
+  }
+  return decodedLevels;
+}
+
+initialize();
+

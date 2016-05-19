@@ -9,17 +9,11 @@
     <%= f.submit 'Submit', class: 'btn' %>
   <% end %>
 
-  <div class="row">
-    <div class="col-lg-12">
-      <h3 class='trip-summary'></h3>
-    </div>
-
-    <div class="col-lg-6">
-      <div class='start-location'></div>
-    </div>
-
-    <div class="col-lg-6">
-      <div class='end-location'></div>
-    </div>
-  </div>
+  <div id='weatherTravelApp' />
 </div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>"
+  type="text/javascript"></script>
+
+<%= javascript_include_tag 'react-bundle', 'data-turbolinks-track' => true %>
